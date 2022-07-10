@@ -1,28 +1,43 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { EmojiEmotions, Logout } from '@mui/icons-material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
-  const navigate = useNavigate();
+const Navbar = () => {
+    const navigate = useNavigate();
 
-  const onLogout = () => {
-    navigate("/login");
-  };
+    const onLogout = () => {
+        navigate("/login");
+    };
 
-  return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div">
-            Mood Meter
-          </Typography>
-          <Button color="inherit" onClick={onLogout}>
-            Logout
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
-};
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <AppBar>
+                <Toolbar>
+                    <EmojiEmotions sx={{ display: 'flex', mr: 2 }} />
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            flexGrow: 1,
+                            textAlign: 'left'
+                        }}
+                    >
+                        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to="/">
+                            Mood Meter
+                        </Link>
+                    </Typography>
+                    <Box sx={{ display: 'flex' }}>
+                        <Box sx={{ padding: 1 }}>
+                            <Logout onClick={onLogout} />
+                        </Box>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+        </Box >
+    );
+}
 
-export default NavBar;
+export default Navbar;

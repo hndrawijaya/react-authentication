@@ -3,14 +3,22 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { signOut } from 'firebase/auth';
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { auth } from '../config/firebase';
 
 const Navbar = () => {
     const navigate = useNavigate();
 
-    const onLogout = () => {
-        navigate("/login");
+    const onLogout = async () => {
+        try {
+            await signOut(auth);
+            navigate("/login");
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (

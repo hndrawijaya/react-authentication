@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
 import Login from './containers/Login';
+import NoMatch from './containers/NoMatch';
 import Register from './containers/Register';
 import reportWebVitals from './reportWebVitals';
 
@@ -20,6 +21,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

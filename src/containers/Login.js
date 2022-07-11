@@ -8,16 +8,13 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { auth } from '../config/firebase';
-import { setUser } from '../reducers/userSlice';
 
 const Login = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = React.useState('');
-    const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,8 +23,7 @@ const Login = () => {
         const password = data.get('password');
 
         try {
-            const { user } = await signInWithEmailAndPassword(auth, email, password);
-            dispatch(setUser(user));
+            await signInWithEmailAndPassword(auth, email, password);
             navigate("/");
         } catch (error) {
             setErrorMessage(error.message);

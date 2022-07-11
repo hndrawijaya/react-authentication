@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
+import ProtectedRoute from './components/ProtectedRoute';
 import Login from './containers/Login';
 import NoMatch from './containers/NoMatch';
 import Register from './containers/Register';
@@ -18,7 +19,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={
+          <ProtectedRoute>
+            <App />
+          </ProtectedRoute>} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<NoMatch />} />

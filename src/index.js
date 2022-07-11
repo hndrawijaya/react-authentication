@@ -23,8 +23,14 @@ root.render(
           <ProtectedRoute>
             <App />
           </ProtectedRoute>} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="login" element={
+          <ProtectedRoute loginOnly={false}>
+            <Login />
+          </ProtectedRoute>} />
+        <Route path="register" element={
+          <ProtectedRoute loginOnly={false}>
+            <Register />
+          </ProtectedRoute>} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>

@@ -6,17 +6,27 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/firebase';
 
 const Login = () => {
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = React.useState('');
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const email = data.get('email');
+        const password = data.get('password');
+
+        try {
+            const {user} = await signInWithEmailAndPassword(auth, email, password);
+            navigate("/");
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
     };
 
     return (
@@ -64,6 +74,7 @@ const Login = () => {
                     >
                         Sign In
                     </Button>
+                    <Typography color='red'>{errorMessage}</Typography>
                     <Grid container>
                         <Grid item>
                             <Link to="/register">

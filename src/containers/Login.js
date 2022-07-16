@@ -22,7 +22,7 @@ const Login = () => {
         const password = data.get('password');
 
         try {
-            const {user} = await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
             navigate("/");
         } catch (error) {
             setErrorMessage(error.message);
@@ -66,6 +66,7 @@ const Login = () => {
                         id="password"
                         autoComplete="current-password"
                     />
+                    <Typography color='red'>{errorMessage}</Typography>
                     <Button
                         type="submit"
                         fullWidth
@@ -74,7 +75,6 @@ const Login = () => {
                     >
                         Sign In
                     </Button>
-                    <Typography color='red'>{errorMessage}</Typography>
                     <Grid container>
                         <Grid item>
                             <Link to="/register">

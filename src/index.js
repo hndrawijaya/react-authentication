@@ -6,14 +6,23 @@ import '@fontsource/roboto/700.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Login from './containers/Login';
+import Register from './containers/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />}></Route>
+        <Route path='login' element={<Login />}></Route>
+        <Route path='register' element={<Register />}></Route>
+      </Routes> 
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -11,9 +11,9 @@ const NavBar = () => {
 
   return (
     <Box>
-      <AppBar position="static">
+      <AppBar position="static" sx={{display: 'flex'}}>
         <Toolbar>
-          <Typography variant="h6" component="div">
+          <Typography variant="h6" component="div" sx={{flexGrow: 1, textAlign: 'left'}}>
             Mood Meter
           </Typography>
           <Button color="inherit" onClick={onLogout}>
